@@ -1,4 +1,17 @@
-Pull and run:
+Install from CLI:
+```bash
+bash -c "$(curl https://raw.githubusercontent.com/Fillps/ansible/main/run)"
 ```
-curl -o- https://github.com/Fillps/ansible/run | sudo bash
+
+Install after cloning:
+```bash
+git clone https://github.com/Fillps/ansible.git
+cd ansible
+./run-local
 ```
+
+Test In Docker:
+```bash
+./test
+```
+
