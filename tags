@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-read -p "Available tags: 
-    core install node ssh zsh dotfiles productivity git-personal git-hp
-Enter the tags you want to use (separated by commas): " tags
-echo "$tags" 

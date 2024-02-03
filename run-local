@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-tags=$(./tags)
-./install-ansible
-
-sudo ansible-playbook --ask-vault-pass --tags "${tags[@]}" local.yml

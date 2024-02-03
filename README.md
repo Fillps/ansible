@@ -7,7 +7,7 @@ Install after cloning:
 ```bash
 git clone https://github.com/Fillps/ansible.git
 cd ansible
-./run-local
+./run local
 ```
 
 Test In Docker:
