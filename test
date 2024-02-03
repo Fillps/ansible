@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Read all arguments as string
-tags=$@
+tags="$*"
 docker build . -t new-computer
 docker run -it --rm -e TAGS="${tags}" new-computer

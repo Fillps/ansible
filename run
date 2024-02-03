@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-read -p "Available tags: 
+read -r -p "Available tags: 
     core install node ssh zsh dotfiles productivity git-personal git-hp
 Enter the tags you want to use (separated by commas): " tags
 
@@ -11,7 +11,7 @@ sudo apt install -y curl git software-properties-common ansible
 
 # Check if local arg was used
 if [ "$1" == "local" ]; then
-    sudo ansible-playbook --ask-vault-pass --tags "${tags[@]}" local.yml
+    ansible-playbook --ask-vault-pass --tags "${tags[@]}" local.yml
 else
-    sudo ANSIBLE_ASK_VAULT_PASS=True ansible-pull -U https://github.com/Fillps/ansible.git --tags "${tags[@]}" local.yml
+    ANSIBLE_ASK_VAULT_PASS=True ansible-pull -U https://github.com/Fillps/ansible.git --tags "${tags[@]}" local.yml
 fi
