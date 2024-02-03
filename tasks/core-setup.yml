@@ -19,29 +19,7 @@
 - name: Install System Packages 3 (the rest)
   become: true
   apt:
-    name: [ "compton", "curl", "htop", "golang", "lsof", "i3", "ccache", "ninja-build", "python3-pip", "dconf-editor", "nvidia-settings", "pavucontrol", "moreutils", "clangd", "ubuntu-mate-desktop" ]
+    name: [ "jq", "curl", "htop", "golang", "lsof", "python3-pip", "dconf-editor", "moreutils" ]
   tags:
     - install
     - core
-
-- name: Install Clang
-  become: true
-  apt:
-    name: ["clang", "clang-11", "clang-12", "clangd", "clangd-10", "clangd-11", "clangd-12"]
-  tags:
-    - install
-    - neovim
-    - core
-
-- name: dconf i3
-  shell: dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"
-  tags:
-    - install
-    - core
-
-- name: dconf i3
-  shell: dconf write /org/mate/desktop/background/show-desktop-icons "false"
-  tags:
-    - install
-    - core
-

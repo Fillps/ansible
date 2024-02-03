@@ -2,41 +2,27 @@
   git_config:
     name: user.email
     scope: global
-    value: "the.primeagen@gmail.com"
+    value: "filipess@live.com"
   tags:
   - git-personal
 - name: Git personal setup name
   git_config:
     name: user.name
     scope: global
-    value: "ThePrimeagen"
+    value: "filipe"
   tags:
   - git-personal
-- name: Git Rustin
+- name: Git HP setup email
   git_config:
     name: user.email
     scope: global
-    value: "rustin.deeznuts@gmail.com"
+    value: "filipe@hp.com"
   tags:
-  - git-rustin
-- name: Git personal setup name
+  - git-hp
+- name: Git HP setup name
   git_config:
     name: user.name
     scope: global
-    value: "RustLover69"
+    value: "filipe"
   tags:
-  - git-rustin
-- name: Netflix
-  git_config:
-    name: user.email
-    scope: global
-    value: "mpaulson@netflix.com"
-  tags:
-  - git-netflix
-- name: Git personal setup name
-  git_config:
-    name: user.name
-    scope: global
-    value: "mpaulson"
-  tags:
-  - git-netflix
+  - git-hp

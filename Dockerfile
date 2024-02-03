@@ -1,4 +1,4 @@
-FROM ubuntu:focal AS base
+FROM ubuntu:jammy AS base
 WORKDIR /usr/local/bin
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
@@ -10,14 +10,19 @@ RUN apt-get update && \
     apt-get clean autoclean && \
     apt-get autoremove --yes
 
+RUN apt-get install -y sudo
+
 FROM base AS prime
 ARG TAGS
-RUN addgroup --gid 1000 theprimeagen
-RUN adduser --gecos theprimeagen --uid 1000 --gid 1000 --disabled-password theprimeagen
-USER theprimeagen
-WORKDIR /home/theprimeagen
+RUN addgroup --gid 1000 filipe
+RUN adduser --gecos filipe --uid 1000 --gid 1000 --disabled-password filipe
+RUN echo "filipe ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+USER filipe
+WORKDIR /home/filipe
 
 FROM prime
-COPY . .
-CMD ["sh", "-c", "ansible-playbook $TAGS local.yml"]
+COPY --chown=filipe:filipe . .
+USER filipe
+ENV USER=filipe
+CMD ["sh", "-c", "USER=filipe ansible-playbook $TAGS local.yml --ask-vault-pass && bash"]
 
