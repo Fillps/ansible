@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 read -r -p "Available tags: 
     core,install,node,ssh,zsh,dotfiles,productivity,git-personal,git-hp
-Enter the tags you want to use (separated by commas): " tags
+Enter the tags you want to use (separated by commas): " raw_tags
+
+# Normalize tag input like "core, install" -> "core,install"
+tags="$(echo "$raw_tags" | tr -d '[:space:]')"
 
 ## Install ansible
 sudo apt-add-repository -y ppa:ansible/ansible
@@ -10,8 +15,8 @@ sudo apt update -y
 sudo apt install -y curl git software-properties-common ansible
 
 # Check if local arg was used
-if [ "$1" == "local" ]; then
-    ansible-playbook --ask-vault-pass --tags "${tags[@]}" local.yml
+if [ "${1:-}" == "local" ]; then
+    ansible-playbook -i localhost, --connection=local --ask-vault-pass --ask-become-pass --tags "$tags" local.yml
 else
-    ANSIBLE_ASK_VAULT_PASS=True ansible-pull -U https://github.com/Fillps/ansible.git --tags "${tags[@]}" local.yml
+    ANSIBLE_ASK_VAULT_PASS=True ansible-pull --ask-become-pass -U https://github.com/Fillps/ansible.git --tags "$tags" local.yml
 fi

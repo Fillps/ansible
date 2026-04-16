@@ -1,7 +1,15 @@
 - name: Install packages
   become: true
   apt:
-    name: [ "tmux", "wireshark", "fzf", "ripgrep"]
+    name: [ "tmux", "wireshark", "fzf", "ripgrep", "gh"]
+  tags:
+    - install
+    - productivity
+
+- name: Install GitHub Copilot CLI
+  ansible.builtin.shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && npm install -g @github/copilot
+  args:
+    executable: /bin/bash
   tags:
     - install
     - productivity
